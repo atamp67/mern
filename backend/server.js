@@ -1,8 +1,8 @@
 const app = require("./app");
 
 const dotenv = require("dotenv");
+const required = require("mongoose");
 const connectDatabase = require("./config/database");
-
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err.message}`);
@@ -10,14 +10,11 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 }); 
 
-
-// ----------------------
 // Config
 
 dotenv.config({path: "backend/config/config.env"});
 
 
-// ----------------------
 // Connecting To Database
 
 connectDatabase();
@@ -37,5 +34,4 @@ process.on("unhandledRejection", err => {
     server.close(() => {
         process.exit();
     });
-
 })
