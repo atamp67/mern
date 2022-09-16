@@ -6,19 +6,19 @@ import "./footer.css"
 const Footer = () => {
     return (
         <footer id="footer">
-            <div class="leftFooter">
+            <div className="leftFooter">
                 <h4>Download our app</h4>                
                 <p>Download App For Android and IOS mobile phone </p>
                 <img src={playStore} alt="PlayStore" />
                 <img src={appStore} alt="AppStore" />
             </div>
 
-            <div class="midFooter">
+            <div className="midFooter">
                 <h1>Ecommerce</h1>
                  <p>Copyrights 2022 &copy; Ecommerce</p>
             </div>
 
-            <div class="rightFooter">
+            <div className="rightFooter">
                 <h4>Follow Us</h4>
                 <a href="/">Instagram</a>
                 <a href="/">Youtube</a>
