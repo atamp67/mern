@@ -9,10 +9,14 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import {useHistory} from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 
 const UserOptions = ({user}) => {
+
+    const {cartItems} = useSelector((state) => state.cart);
+    
     const [open, setOpen] = useState(false);
     const history = useHistory();
     const alert = useAlert();
@@ -21,11 +25,17 @@ const UserOptions = ({user}) => {
     const options = [
         {id: 1, icon: <ListAltIcon />, name: "Orders", func: orders},
         {id: 2, icon: <PersonIcon />, name: "Profile", func: account},
-        {id: 3, icon: <ExitToAppIcon />, name: "Logout", func: logoutUser}
+        {
+            id: 3, 
+            icon: <ShoppingCartIcon style={{color: cartItems.length > 0 ? "tomato" : "unset"}} />, 
+            name: `Cart(${cartItems.length})`, 
+            func: cart
+        },
+        {id: 4, icon: <ExitToAppIcon />, name: "Logout", func: logoutUser}
 ,    ];
     
     if (user.role === "admin") {
-        options.unshift({id: 4, icon: <DashboardIcon />, name: "Dashboard", func: dashboard});
+        options.unshift({id: 5, icon: <DashboardIcon />, name: "Dashboard", func: dashboard});
     }
 
     function dashboard() {
@@ -38,6 +48,10 @@ const UserOptions = ({user}) => {
 
     function account() {
         history.push("/account");
+    }
+
+    function cart() {
+        history.push("/cart");
     }
 
     function logoutUser() {
@@ -63,7 +77,13 @@ const UserOptions = ({user}) => {
             }
         >
             {options.map((item) => (
-                <SpeedDialAction icon={item.icon} key={item.id} tooltipTitle={item.name} onClick={item.func} />
+                <SpeedDialAction 
+                    icon={item.icon} 
+                    key={item.id} 
+                    tooltipTitle={item.name} 
+                    onClick={item.func}
+                    tooltipOpen={window.innerWidth <= 600 ? true : false}
+                />
             ))}
         </SpeedDial>
     </Fragment>);

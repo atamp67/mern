@@ -31,6 +31,11 @@
     font: 600 1.6vmax "Roboto";
 }
 
+.detailsBlock-1 > p {
+    color: rgba(54, 54, 54, 0.582);
+    font: 200 0.6vmax cursive;
+}
+
 .detailsBlock-2 {
     display: flex;
     justify-content: flex-start;
@@ -43,7 +48,7 @@
 
 .detailsBlock-2 > span {
     color: rgba(54, 54, 54, 0.582);
-    font: 200 0.6vmax cursive;
+    font: 200 0.8vmax cursive;
 }
 
 .detailsBlock-3 {
@@ -81,6 +86,7 @@
     text-align: center;
     outline: none;
     color: rgba(0, 0, 0, 0.74);
+    font: 400 0.8vmax "Roboto";
 }
 
 .detailsBlock-3-1 > button:last-child {
@@ -137,6 +143,19 @@
     transform: scale(1.1);
 }
 
+.submitDialog {
+    display: flex;
+    flex-direction: column;
+}
+
+.submitDialogTextArea {
+    border: 1px solid rgba(0, 0, 0, 0.082);
+    margin: 1vmax 0;
+    outline: none;
+    padding: 1rem;
+    font: 300 1rem "Roboto";
+}
+
 .reviewsHeading {
     color: #000000be;
     font: 500 1.4vmax "Roboto";
@@ -174,7 +193,7 @@
     font: 600 0.9vmax "Roboto";
 }
 
-.reviewCard > span {
+.reviewCardComment {
     color: rgba(0, 0, 0, 0.445);
     font: 300 0.8vmax cursive;
 }
