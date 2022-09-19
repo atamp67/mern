@@ -7,7 +7,7 @@ import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import {Link} from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({history}) => {
     const dispatch = useDispatch();
     const {cartItems} = useSelector((state) => state.cart);
 
@@ -28,7 +28,11 @@ const Cart = () => {
     const deleteCartItems = (id) => {
         dispatch(removeItemsFromCart(id));
     };
-
+    
+    const checkoutHandler = () => {
+        history.push("/login?redirect=shipping");
+    };
+    
     return (
         <Fragment>
             {cartItems.length === 0 ? (
@@ -69,7 +73,7 @@ const Cart = () => {
                         </div>
                         <div></div>
                             <div className="checkOutBtn">
-                            <button>Check Out</button>
+                            <button onClick={checkoutHandler}>Check Out</button>
                         </div>
                     </div>
                 </div>

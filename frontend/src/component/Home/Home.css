@@ -78,9 +78,20 @@
     padding-bottom: 0.5vmax;
 }
 
+.productCard > img {
+    width: 14vmax;
+}
+
 .productCard > div {
     margin: 0.5vmax;
     display: flex;
+    font: 300 0.7vmax "Roboto";
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.productCardSpan {
+    margin: 0.5vmax;
     font: 300 0.7vmax "Roboto";
 }
 
