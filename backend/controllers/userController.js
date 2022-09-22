@@ -238,17 +238,13 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
         email: req.body.email,
         role: req.body.role
     };
-    // TODO: ADD CLOUDINARY
-    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+
+    await User.findByIdAndUpdate(req.params.id, newUserData, {
         new: true, 
         runValidators: true,
         useFindAndModify: false
     }); 
 
-    if (!user) {
-        return next(new ErrorHandler(`User doesn't exist with Id: ${req.params.id}`));
-    }
-    
 
     res.status(200).json({
         success: true
@@ -263,6 +259,10 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
     if (!user) {
         return next(new ErrorHandler(`User doesn't exist with Id: ${req.params.id}`));
     }
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
 
     await user.remove();
     

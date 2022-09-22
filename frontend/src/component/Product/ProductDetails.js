@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import {Rating} from "@material-ui/lab";
 import { NEW_REVIEW_FAIL, NEW_REVIEW_RESET } from "../../constants/productConstants";
+import MetaData from "../layout/MetaData";
 
 const ProductDetails = ({match}) => {
     const dispatch = useDispatch();
@@ -93,18 +94,19 @@ const ProductDetails = ({match}) => {
         <Fragment>
             {loading ? (<Loader />) : 
                 (<Fragment>
+                <MetaData title={`${product.name} -- ECOMMERCE`} />
                 <div className="ProductDetails">
                     <div>
                         <Carousel>
                             {product.images && 
-                                product.images.map((item, i) => {
+                                product.images.map((item, i) => (
                                     <img
                                         className="CarouselImage"
                                         key={i}
-                                        src={product.images[0].url}
+                                        src={item.url}
                                         alt={`${i} Slide`}
                                     />
-                                })}
+                                ))}
                         </Carousel>
                     </div>
                     <div>
